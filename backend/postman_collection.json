@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "todo-api-collection",
+		"name": "간단한 TODO List API",
+		"description": "FastAPI 기반 TODO List API 테스트 컬렉션",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. API 상태 확인",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/",
+					"host": ["{{base_url}}"],
+					"path": [""]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. 모든 TODO 조회",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todos",
+					"host": ["{{base_url}}"],
+					"path": ["todos"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. 새 TODO 생성",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"첫 번째 할 일\",\n  \"description\": \"이것은 테스트용 TODO입니다\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/todos",
+					"host": ["{{base_url}}"],
+					"path": ["todos"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. 특정 TODO 조회",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todos/1",
+					"host": ["{{base_url}}"],
+					"path": ["todos", "1"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. TODO 수정",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"수정된 할 일\",\n  \"description\": \"설명도 수정했습니다\",\n  \"completed\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/todos/1",
+					"host": ["{{base_url}}"],
+					"path": ["todos", "1"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. TODO 완료 상태만 변경",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"completed\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/todos/1",
+					"host": ["{{base_url}}"],
+					"path": ["todos", "1"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. 완료된 TODO 조회",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todos/status/true",
+					"host": ["{{base_url}}"],
+					"path": ["todos", "status", "true"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. 미완료 TODO 조회",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todos/status/false",
+					"host": ["{{base_url}}"],
+					"path": ["todos", "status", "false"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. TODO 삭제",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todos/1",
+					"host": ["{{base_url}}"],
+					"path": ["todos", "1"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. 존재하지 않는 TODO 조회 (에러 테스트)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todos/999",
+					"host": ["{{base_url}}"],
+					"path": ["todos", "999"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11. 테스트용 샘플 데이터 추가",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/test/sample-data",
+					"host": ["{{base_url}}"],
+					"path": ["test", "sample-data"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "12. 모든 데이터 삭제 (테스트 초기화)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/test/clear-all",
+					"host": ["{{base_url}}"],
+					"path": ["test", "clear-all"]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}

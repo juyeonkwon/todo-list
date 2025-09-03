@@ -1,0 +1,6 @@
+# 간단한 FastAPI TODO List를 위한 최소 패키지
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# 선택사항 (개발용)
+# requests==2.31.0  # API 테스트용
