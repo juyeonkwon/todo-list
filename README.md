@@ -1,30 +1,34 @@
 # 📝 간단한 TODO List - React + FastAPI
 
-## 📖 프로젝트 개요
+## 📖 개요
+React와 FastAPI로 구현한 간단한 TODO List 애플리케이션입니다.  
+데이터는 **리스트 자료구조**로 관리하며, 직관적이고 학습하기 쉬운 구조를 지향합니다.
 
-React와 FastAPI를 사용하여 구현한 간단한 TODO List 애플리케이션입니다.
-**리스트 자료구조**를 사용하여 데이터를 관리하는 단순하고 이해하기 쉬운 구조로 되어 있습니다.
+---
 
-### 🛠 기술 스택
-
-**Frontend:**
+## 🛠 기술 스택
+**Frontend**
 - React 18 (TypeScript)
-- CSS3 (Custom Styling)
 - Axios (HTTP Client)
+- CSS3 (Custom Styling)
 
-**Backend:**
+**Backend**
 - FastAPI (Python)
-- 메모리 내 리스트 (간단한 데이터 저장)
 - Uvicorn (ASGI Server)
+- 메모리 내 리스트 저장 (DB 미사용)
 
-### � 핵심 특징
+---
 
-- ✅ **간단한 구조**: 클래스 대신 리스트와 딕셔너리 사용
-- ✅ **메모리 저장**: 복잡한 데이터베이스 없이 리스트로 데이터 관리
-- ✅ **직관적 API**: 단순하고 이해하기 쉬운 함수 기반 API
-- ✅ **학습 친화적**: 초보자도 쉽게 이해할 수 있는 코드 구조
+## ✨ 특징
+- ✅ **간단한 구조**: 리스트/딕셔너리 기반 CRUD  
+- ✅ **메모리 저장**: 데이터베이스 없이 동작  
+- ✅ **직관적 API**: RESTful 구조, 자동 문서화 제공  
+- ✅ **학습 친화적**: 초보자도 이해하기 쉬운 설계  
 
-### �🏗 프로젝트 구조
+---
+
+## 🏗 프로젝트 구조
+
 
 ```
 react_fastapi/
@@ -60,14 +64,21 @@ react_fastapi/
 └── SIMPLE_PROJECT_GUIDE.md         # 간단한 구조 철학 설명
 ```
 
+
+---
+
 ## 🚀 실행 방법
 
-### 1. 사전 요구사항
-
-- Node.js 16+ 및 npm
+### 1. 요구사항
+- Node.js 16+  
 - Python 3.8+
 
-### 2. Backend 실행 (간단한 방법)
+### 2. Backend 실행
+```bash
+cd backend
+pip install -r requirements.txt
+python main.py
+
 
 ```bash
 # 백엔드 디렉토리로 이동
@@ -83,8 +94,9 @@ pip install -r requirements.txt
 python main.py
 ```
 
-서버는 `http://localhost:8000`에서 실행됩니다.
-- API 문서: `http://localhost:8000/docs`
+- 서버: `http://localhost:8000`
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
 
 ### 3. Frontend 실행
 
@@ -99,7 +111,10 @@ npm install
 npm start
 ```
 
-애플리케이션은 `http://localhost:3000`에서 실행됩니다.
+- 클라이언트: `http://localhost:3000`
+
+
+---
 
 ## 📋 주요 기능
 
@@ -122,18 +137,18 @@ npm start
 
 ### ⚡ Backend API
 
-| 메서드 | 엔드포인트 | 설명 | 상태 |
-|--------|------------|------|------|
-| GET | `/` | API 상태 및 TODO 개수 확인 | ✅ |
-| GET | `/todos` | 모든 TODO 조회 | ✅ |
-| GET | `/todos/{id}` | 특정 TODO 조회 | ✅ |
-| POST | `/todos` | 새 TODO 생성 | ✅ |
-| PUT | `/todos/{id}` | TODO 수정 | ✅ |
-| DELETE | `/todos/{id}` | TODO 삭제 | ✅ |
-| GET | `/todos/status/{completed}` | 상태별 TODO 조회 | ✅ |
-| **테스트 전용** | | | |
-| POST | `/test/sample-data` | 5개 샘플 TODO 추가 | 🧪 |
-| DELETE | `/test/clear-all` | 모든 TODO 삭제 | 🧪 |
+| 메서드    | 엔드포인트                  | 설명                  |
+| ------ | ---------------------- | ------------------- |
+| GET    | `/`                    | API 상태 및 TODO 개수 확인 |
+| GET    | `/todos`               | 모든 TODO 조회          |
+| GET    | `/todos/{id}`          | 특정 TODO 조회          |
+| POST   | `/todos`               | 새 TODO 생성           |
+| PUT    | `/todos/{id}`          | TODO 수정             |
+| DELETE | `/todos/{id}`          | TODO 삭제             |
+| GET    | `/todos/status/{done}` | 완료/미완료 TODO 조회      |
+| POST   | `/test/sample-data`    | 샘플 TODO 5개 추가       |
+| DELETE | `/test/clear-all`      | 모든 TODO 삭제          |
+
 
 ### 📊 간단한 데이터 구조
 
@@ -162,37 +177,30 @@ interface Todo {
 }
 ```
 
-## 🔧 개발 도구
+---
 
-### API 문서화 및 테스트
+## 🔧 테스트 방법
 
-FastAPI는 자동으로 API 문서를 생성합니다:
-- **Swagger UI**: `http://localhost:8000/docs`
-- **ReDoc**: `http://localhost:8000/redoc`
-
-### 독립적인 백엔드 테스트
-
-#### **1. Postman으로 테스트**
+#### **1. Postman 컬렉션**
 ```bash
-# Postman 컬렉션 임포트
 backend/postman_collection.json
 backend/postman_environment.json
 ```
 
-#### **2. PowerShell 스크립트로 테스트 (Windows)**
+#### **2. PowerShell (Windows)**
 ```powershell
 cd backend
 ./test_api.ps1
 ```
 
-#### **3. Bash 스크립트로 테스트 (Linux/Mac)**
+#### **3. Bash (Linux/Mac/WSL)**
 ```bash
 cd backend
 chmod +x test_api.sh
 ./test_api.sh
 ```
 
-#### **4. 수동 테스트 (curl)**
+#### **4. 수동(curl) 테스트**
 ```bash
 # API 상태 확인
 curl http://localhost:8000/
@@ -209,6 +217,8 @@ curl http://localhost:8000/todos
 개발 및 테스트를 위한 특별한 엔드포인트들:
 - `POST /test/sample-data` - 5개의 샘플 TODO 추가
 - `DELETE /test/clear-all` - 모든 TODO 삭제 (테스트 초기화)
+
+---
 
 ## 🎯 향후 개선 사항
 
@@ -232,6 +242,8 @@ curl http://localhost:8000/todos
    - 테스트 코드 작성
    - Docker 컨테이너화
 
+---
+
 ## 🎓 학습 포인트
 
 이 프로젝트는 다음을 학습할 수 있도록 설계되었습니다:
@@ -253,6 +265,8 @@ curl http://localhost:8000/todos
 - API 설계 및 문서화
 - 개발 환경 구성
 
+---
+
 ## 🐛 문제 해결
 
 ### 일반적인 문제
@@ -270,10 +284,8 @@ curl http://localhost:8000/todos
    - Node.js/Python 버전 확인
    - 캐시 정리 후 재설치
 
+---
+
 ## 📄 라이선스
 
-이 프로젝트는 학습 목적으로 만들어졌습니다.
-
-## 👨‍💻 개발자
-
-프로젝트에 대한 문의사항이나 개선 제안이 있으시면 언제든 연락해주세요!
+이 프로젝트는 개인 학습 기록용으로 제작되었습니다.
